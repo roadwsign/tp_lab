@@ -1,0 +1,47 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "sipl-language-toolkit"
+version = "0.1.0"
+description = "Parser, interpreter and visualization tools for SIPL"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = ["lark>=1.1,<2"]
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "pytest-cov>=5", "ruff>=0.6", "mypy>=1.10", "build>=1.2"]
+
+[project.scripts]
+sipl = "sipl.cli:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+include-package-data = true
+
+[tool.setuptools.package-data]
+sipl = ["grammar/*.lark", "py.typed"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "--cov=sipl --cov-report=term-missing --cov-fail-under=80"
+
+[tool.coverage.run]
+source = ["sipl"]
+branch = true
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.mypy]
+python_version = "3.10"
+packages = ["sipl"]
+ignore_missing_imports = true
+check_untyped_defs = true
+disallow_untyped_defs = true
+warn_unused_ignores = true

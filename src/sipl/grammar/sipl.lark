@@ -1,0 +1,41 @@
+start: "begin" statement "end"
+
+?statement: atom | sequence
+sequence: atom ";" atom (";" atom)*
+
+?atom: assignment
+     | if_statement
+     | while_statement
+     | block
+     | "skip" -> skip_statement
+
+assignment: NAME ":=" arithmetic
+if_statement: "if" boolean "then" atom "else" atom
+while_statement: "while" boolean "do" atom
+block: "begin" statement "end"
+
+?arithmetic: sum
+?sum: product
+    | sum "+" product -> add
+    | sum "-" product -> subtract
+?product: primary
+    | product "*" primary -> multiply
+?primary: NUMBER -> number
+        | NAME -> variable
+        | "(" arithmetic ")"
+
+?boolean: disjunction
+?disjunction: conjunction
+            | disjunction "∨" conjunction -> logical_or
+?conjunction: negation
+?negation: "¬" negation -> logical_not
+         | comparison
+?comparison: arithmetic "=" arithmetic -> equal
+           | arithmetic ">" arithmetic -> greater
+           | "(" boolean ")"
+
+NAME: /[A-Za-z_][A-Za-z0-9_]*/
+NUMBER: /-?(0|[1-9][0-9]*)/
+
+%import common.WS
+%ignore WS

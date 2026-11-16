@@ -1,0 +1,6 @@
+begin
+    if ¬(X = 0) ∨ Y > 2 then
+        R := X + Y * 2
+    else
+        skip
+end
