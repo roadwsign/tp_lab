@@ -1,0 +1,1327 @@
+{
+  "format_version": 1,
+  "cases": [
+    {
+      "id": "positive-01",
+      "source": "begin skip end",
+      "valid": true,
+      "expected_ast": {
+        "type": "Program",
+        "statement": {
+          "type": "Skip",
+          "span": {
+            "line": 1,
+            "column": 7,
+            "end_line": 1,
+            "end_column": 11,
+            "start_pos": 6,
+            "end_pos": 10
+          }
+        },
+        "span": {
+          "line": 1,
+          "column": 1,
+          "end_line": 1,
+          "end_column": 15,
+          "start_pos": 0,
+          "end_pos": 14
+        }
+      }
+    },
+    {
+      "id": "positive-02",
+      "source": "begin X := 1 end",
+      "valid": true,
+      "expected_ast": {
+        "type": "Program",
+        "statement": {
+          "type": "Assignment",
+          "name": "X",
+          "expression": {
+            "type": "Number",
+            "value": 1,
+            "span": {
+              "line": 1,
+              "column": 12,
+              "end_line": 1,
+              "end_column": 13,
+              "start_pos": 11,
+              "end_pos": 12
+            }
+          },
+          "span": {
+            "line": 1,
+            "column": 7,
+            "end_line": 1,
+            "end_column": 13,
+            "start_pos": 6,
+            "end_pos": 12
+          }
+        },
+        "span": {
+          "line": 1,
+          "column": 1,
+          "end_line": 1,
+          "end_column": 17,
+          "start_pos": 0,
+          "end_pos": 16
+        }
+      },
+      "initial_state": {},
+      "expected_state": {
+        "X": 1
+      },
+      "execution": true
+    },
+    {
+      "id": "positive-03",
+      "source": "begin X := X + 1 end",
+      "valid": true,
+      "expected_ast": {
+        "type": "Program",
+        "statement": {
+          "type": "Assignment",
+          "name": "X",
+          "expression": {
+            "type": "BinaryArithmetic",
+            "operator": "+",
+            "left": {
+              "type": "Variable",
+              "name": "X",
+              "span": {
+                "line": 1,
+                "column": 12,
+                "end_line": 1,
+                "end_column": 13,
+                "start_pos": 11,
+                "end_pos": 12
+              }
+            },
+            "right": {
+              "type": "Number",
+              "value": 1,
+              "span": {
+                "line": 1,
+                "column": 16,
+                "end_line": 1,
+                "end_column": 17,
+                "start_pos": 15,
+                "end_pos": 16
+              }
+            },
+            "span": {
+              "line": 1,
+              "column": 12,
+              "end_line": 1,
+              "end_column": 17,
+              "start_pos": 11,
+              "end_pos": 16
+            }
+          },
+          "span": {
+            "line": 1,
+            "column": 7,
+            "end_line": 1,
+            "end_column": 17,
+            "start_pos": 6,
+            "end_pos": 16
+          }
+        },
+        "span": {
+          "line": 1,
+          "column": 1,
+          "end_line": 1,
+          "end_column": 21,
+          "start_pos": 0,
+          "end_pos": 20
+        }
+      }
+    },
+    {
+      "id": "positive-04",
+      "source": "begin X := X - 1 end",
+      "valid": true,
+      "expected_ast": {
+        "type": "Program",
+        "statement": {
+          "type": "Assignment",
+          "name": "X",
+          "expression": {
+            "type": "BinaryArithmetic",
+            "operator": "-",
+            "left": {
+              "type": "Variable",
+              "name": "X",
+              "span": {
+                "line": 1,
+                "column": 12,
+                "end_line": 1,
+                "end_column": 13,
+                "start_pos": 11,
+                "end_pos": 12
+              }
+            },
+            "right": {
+              "type": "Number",
+              "value": 1,
+              "span": {
+                "line": 1,
+                "column": 16,
+                "end_line": 1,
+                "end_column": 17,
+                "start_pos": 15,
+                "end_pos": 16
+              }
+            },
+            "span": {
+              "line": 1,
+              "column": 12,
+              "end_line": 1,
+              "end_column": 17,
+              "start_pos": 11,
+              "end_pos": 16
+            }
+          },
+          "span": {
+            "line": 1,
+            "column": 7,
+            "end_line": 1,
+            "end_column": 17,
+            "start_pos": 6,
+            "end_pos": 16
+          }
+        },
+        "span": {
+          "line": 1,
+          "column": 1,
+          "end_line": 1,
+          "end_column": 21,
+          "start_pos": 0,
+          "end_pos": 20
+        }
+      }
+    },
+    {
+      "id": "positive-05",
+      "source": "begin X := X * 2 end",
+      "valid": true,
+      "expected_ast": {
+        "type": "Program",
+        "statement": {
+          "type": "Assignment",
+          "name": "X",
+          "expression": {
+            "type": "BinaryArithmetic",
+            "operator": "*",
+            "left": {
+              "type": "Variable",
+              "name": "X",
+              "span": {
+                "line": 1,
+                "column": 12,
+                "end_line": 1,
+                "end_column": 13,
+                "start_pos": 11,
+                "end_pos": 12
+              }
+            },
+            "right": {
+              "type": "Number",
+              "value": 2,
+              "span": {
+                "line": 1,
+                "column": 16,
+                "end_line": 1,
+                "end_column": 17,
+                "start_pos": 15,
+                "end_pos": 16
+              }
+            },
+            "span": {
+              "line": 1,
+              "column": 12,
+              "end_line": 1,
+              "end_column": 17,
+              "start_pos": 11,
+              "end_pos": 16
+            }
+          },
+          "span": {
+            "line": 1,
+            "column": 7,
+            "end_line": 1,
+            "end_column": 17,
+            "start_pos": 6,
+            "end_pos": 16
+          }
+        },
+        "span": {
+          "line": 1,
+          "column": 1,
+          "end_line": 1,
+          "end_column": 21,
+          "start_pos": 0,
+          "end_pos": 20
+        }
+      }
+    },
+    {
+      "id": "positive-06",
+      "source": "begin X := (X + 1) * 2 end",
+      "valid": true,
+      "expected_ast": {
+        "type": "Program",
+        "statement": {
+          "type": "Assignment",
+          "name": "X",
+          "expression": {
+            "type": "BinaryArithmetic",
+            "operator": "*",
+            "left": {
+              "type": "BinaryArithmetic",
+              "operator": "+",
+              "left": {
+                "type": "Variable",
+                "name": "X",
+                "span": {
+                  "line": 1,
+                  "column": 13,
+                  "end_line": 1,
+                  "end_column": 14,
+                  "start_pos": 12,
+                  "end_pos": 13
+                }
+              },
+              "right": {
+                "type": "Number",
+                "value": 1,
+                "span": {
+                  "line": 1,
+                  "column": 17,
+                  "end_line": 1,
+                  "end_column": 18,
+                  "start_pos": 16,
+                  "end_pos": 17
+                }
+              },
+              "span": {
+                "line": 1,
+                "column": 13,
+                "end_line": 1,
+                "end_column": 18,
+                "start_pos": 12,
+                "end_pos": 17
+              }
+            },
+            "right": {
+              "type": "Number",
+              "value": 2,
+              "span": {
+                "line": 1,
+                "column": 22,
+                "end_line": 1,
+                "end_column": 23,
+                "start_pos": 21,
+                "end_pos": 22
+              }
+            },
+            "span": {
+              "line": 1,
+              "column": 12,
+              "end_line": 1,
+              "end_column": 23,
+              "start_pos": 11,
+              "end_pos": 22
+            }
+          },
+          "span": {
+            "line": 1,
+            "column": 7,
+            "end_line": 1,
+            "end_column": 23,
+            "start_pos": 6,
+            "end_pos": 22
+          }
+        },
+        "span": {
+          "line": 1,
+          "column": 1,
+          "end_line": 1,
+          "end_column": 27,
+          "start_pos": 0,
+          "end_pos": 26
+        }
+      }
+    },
+    {
+      "id": "positive-07",
+      "source": "begin X := 1; Y := 2 end",
+      "valid": true,
+      "expected_ast": {
+        "type": "Program",
+        "statement": {
+          "type": "Sequence",
+          "statements": [
+            {
+              "type": "Assignment",
+              "name": "X",
+              "expression": {
+                "type": "Number",
+                "value": 1,
+                "span": {
+                  "line": 1,
+                  "column": 12,
+                  "end_line": 1,
+                  "end_column": 13,
+                  "start_pos": 11,
+                  "end_pos": 12
+                }
+              },
+              "span": {
+                "line": 1,
+                "column": 7,
+                "end_line": 1,
+                "end_column": 13,
+                "start_pos": 6,
+                "end_pos": 12
+              }
+            },
+            {
+              "type": "Assignment",
+              "name": "Y",
+              "expression": {
+                "type": "Number",
+                "value": 2,
+                "span": {
+                  "line": 1,
+                  "column": 20,
+                  "end_line": 1,
+                  "end_column": 21,
+                  "start_pos": 19,
+                  "end_pos": 20
+                }
+              },
+              "span": {
+                "line": 1,
+                "column": 15,
+                "end_line": 1,
+                "end_column": 21,
+                "start_pos": 14,
+                "end_pos": 20
+              }
+            }
+          ],
+          "span": {
+            "line": 1,
+            "column": 7,
+            "end_line": 1,
+            "end_column": 21,
+            "start_pos": 6,
+            "end_pos": 20
+          }
+        },
+        "span": {
+          "line": 1,
+          "column": 1,
+          "end_line": 1,
+          "end_column": 25,
+          "start_pos": 0,
+          "end_pos": 24
+        }
+      }
+    },
+    {
+      "id": "positive-08",
+      "source": "begin if X = 0 then skip else X := 1 end",
+      "valid": true,
+      "expected_ast": {
+        "type": "Program",
+        "statement": {
+          "type": "If",
+          "condition": {
+            "type": "Comparison",
+            "operator": "=",
+            "left": {
+              "type": "Variable",
+              "name": "X",
+              "span": {
+                "line": 1,
+                "column": 10,
+                "end_line": 1,
+                "end_column": 11,
+                "start_pos": 9,
+                "end_pos": 10
+              }
+            },
+            "right": {
+              "type": "Number",
+              "value": 0,
+              "span": {
+                "line": 1,
+                "column": 14,
+                "end_line": 1,
+                "end_column": 15,
+                "start_pos": 13,
+                "end_pos": 14
+              }
+            },
+            "span": {
+              "line": 1,
+              "column": 10,
+              "end_line": 1,
+              "end_column": 15,
+              "start_pos": 9,
+              "end_pos": 14
+            }
+          },
+          "then_branch": {
+            "type": "Skip",
+            "span": {
+              "line": 1,
+              "column": 21,
+              "end_line": 1,
+              "end_column": 25,
+              "start_pos": 20,
+              "end_pos": 24
+            }
+          },
+          "else_branch": {
+            "type": "Assignment",
+            "name": "X",
+            "expression": {
+              "type": "Number",
+              "value": 1,
+              "span": {
+                "line": 1,
+                "column": 36,
+                "end_line": 1,
+                "end_column": 37,
+                "start_pos": 35,
+                "end_pos": 36
+              }
+            },
+            "span": {
+              "line": 1,
+              "column": 31,
+              "end_line": 1,
+              "end_column": 37,
+              "start_pos": 30,
+              "end_pos": 36
+            }
+          },
+          "span": {
+            "line": 1,
+            "column": 7,
+            "end_line": 1,
+            "end_column": 37,
+            "start_pos": 6,
+            "end_pos": 36
+          }
+        },
+        "span": {
+          "line": 1,
+          "column": 1,
+          "end_line": 1,
+          "end_column": 41,
+          "start_pos": 0,
+          "end_pos": 40
+        }
+      }
+    },
+    {
+      "id": "positive-09",
+      "source": "begin while X > 0 do X := X - 1 end",
+      "valid": true,
+      "expected_ast": {
+        "type": "Program",
+        "statement": {
+          "type": "While",
+          "condition": {
+            "type": "Comparison",
+            "operator": ">",
+            "left": {
+              "type": "Variable",
+              "name": "X",
+              "span": {
+                "line": 1,
+                "column": 13,
+                "end_line": 1,
+                "end_column": 14,
+                "start_pos": 12,
+                "end_pos": 13
+              }
+            },
+            "right": {
+              "type": "Number",
+              "value": 0,
+              "span": {
+                "line": 1,
+                "column": 17,
+                "end_line": 1,
+                "end_column": 18,
+                "start_pos": 16,
+                "end_pos": 17
+              }
+            },
+            "span": {
+              "line": 1,
+              "column": 13,
+              "end_line": 1,
+              "end_column": 18,
+              "start_pos": 12,
+              "end_pos": 17
+            }
+          },
+          "body": {
+            "type": "Assignment",
+            "name": "X",
+            "expression": {
+              "type": "BinaryArithmetic",
+              "operator": "-",
+              "left": {
+                "type": "Variable",
+                "name": "X",
+                "span": {
+                  "line": 1,
+                  "column": 27,
+                  "end_line": 1,
+                  "end_column": 28,
+                  "start_pos": 26,
+                  "end_pos": 27
+                }
+              },
+              "right": {
+                "type": "Number",
+                "value": 1,
+                "span": {
+                  "line": 1,
+                  "column": 31,
+                  "end_line": 1,
+                  "end_column": 32,
+                  "start_pos": 30,
+                  "end_pos": 31
+                }
+              },
+              "span": {
+                "line": 1,
+                "column": 27,
+                "end_line": 1,
+                "end_column": 32,
+                "start_pos": 26,
+                "end_pos": 31
+              }
+            },
+            "span": {
+              "line": 1,
+              "column": 22,
+              "end_line": 1,
+              "end_column": 32,
+              "start_pos": 21,
+              "end_pos": 31
+            }
+          },
+          "span": {
+            "line": 1,
+            "column": 7,
+            "end_line": 1,
+            "end_column": 32,
+            "start_pos": 6,
+            "end_pos": 31
+          }
+        },
+        "span": {
+          "line": 1,
+          "column": 1,
+          "end_line": 1,
+          "end_column": 36,
+          "start_pos": 0,
+          "end_pos": 35
+        }
+      }
+    },
+    {
+      "id": "positive-10",
+      "source": "begin begin X := 1; Y := 2 end end",
+      "valid": true,
+      "expected_ast": {
+        "type": "Program",
+        "statement": {
+          "type": "Block",
+          "statement": {
+            "type": "Sequence",
+            "statements": [
+              {
+                "type": "Assignment",
+                "name": "X",
+                "expression": {
+                  "type": "Number",
+                  "value": 1,
+                  "span": {
+                    "line": 1,
+                    "column": 18,
+                    "end_line": 1,
+                    "end_column": 19,
+                    "start_pos": 17,
+                    "end_pos": 18
+                  }
+                },
+                "span": {
+                  "line": 1,
+                  "column": 13,
+                  "end_line": 1,
+                  "end_column": 19,
+                  "start_pos": 12,
+                  "end_pos": 18
+                }
+              },
+              {
+                "type": "Assignment",
+                "name": "Y",
+                "expression": {
+                  "type": "Number",
+                  "value": 2,
+                  "span": {
+                    "line": 1,
+                    "column": 26,
+                    "end_line": 1,
+                    "end_column": 27,
+                    "start_pos": 25,
+                    "end_pos": 26
+                  }
+                },
+                "span": {
+                  "line": 1,
+                  "column": 21,
+                  "end_line": 1,
+                  "end_column": 27,
+                  "start_pos": 20,
+                  "end_pos": 26
+                }
+              }
+            ],
+            "span": {
+              "line": 1,
+              "column": 13,
+              "end_line": 1,
+              "end_column": 27,
+              "start_pos": 12,
+              "end_pos": 26
+            }
+          },
+          "span": {
+            "line": 1,
+            "column": 7,
+            "end_line": 1,
+            "end_column": 31,
+            "start_pos": 6,
+            "end_pos": 30
+          }
+        },
+        "span": {
+          "line": 1,
+          "column": 1,
+          "end_line": 1,
+          "end_column": 35,
+          "start_pos": 0,
+          "end_pos": 34
+        }
+      }
+    },
+    {
+      "id": "positive-11",
+      "source": "begin if ¬(X = 0) then X := 1 else X := 0 end",
+      "valid": true,
+      "expected_ast": {
+        "type": "Program",
+        "statement": {
+          "type": "If",
+          "condition": {
+            "type": "LogicalNot",
+            "operand": {
+              "type": "Comparison",
+              "operator": "=",
+              "left": {
+                "type": "Variable",
+                "name": "X",
+                "span": {
+                  "line": 1,
+                  "column": 12,
+                  "end_line": 1,
+                  "end_column": 13,
+                  "start_pos": 11,
+                  "end_pos": 12
+                }
+              },
+              "right": {
+                "type": "Number",
+                "value": 0,
+                "span": {
+                  "line": 1,
+                  "column": 16,
+                  "end_line": 1,
+                  "end_column": 17,
+                  "start_pos": 15,
+                  "end_pos": 16
+                }
+              },
+              "span": {
+                "line": 1,
+                "column": 12,
+                "end_line": 1,
+                "end_column": 17,
+                "start_pos": 11,
+                "end_pos": 16
+              }
+            },
+            "span": {
+              "line": 1,
+              "column": 10,
+              "end_line": 1,
+              "end_column": 18,
+              "start_pos": 9,
+              "end_pos": 17
+            }
+          },
+          "then_branch": {
+            "type": "Assignment",
+            "name": "X",
+            "expression": {
+              "type": "Number",
+              "value": 1,
+              "span": {
+                "line": 1,
+                "column": 29,
+                "end_line": 1,
+                "end_column": 30,
+                "start_pos": 28,
+                "end_pos": 29
+              }
+            },
+            "span": {
+              "line": 1,
+              "column": 24,
+              "end_line": 1,
+              "end_column": 30,
+              "start_pos": 23,
+              "end_pos": 29
+            }
+          },
+          "else_branch": {
+            "type": "Assignment",
+            "name": "X",
+            "expression": {
+              "type": "Number",
+              "value": 0,
+              "span": {
+                "line": 1,
+                "column": 41,
+                "end_line": 1,
+                "end_column": 42,
+                "start_pos": 40,
+                "end_pos": 41
+              }
+            },
+            "span": {
+              "line": 1,
+              "column": 36,
+              "end_line": 1,
+              "end_column": 42,
+              "start_pos": 35,
+              "end_pos": 41
+            }
+          },
+          "span": {
+            "line": 1,
+            "column": 7,
+            "end_line": 1,
+            "end_column": 42,
+            "start_pos": 6,
+            "end_pos": 41
+          }
+        },
+        "span": {
+          "line": 1,
+          "column": 1,
+          "end_line": 1,
+          "end_column": 46,
+          "start_pos": 0,
+          "end_pos": 45
+        }
+      }
+    },
+    {
+      "id": "positive-12",
+      "source": "begin if X > 0 ∨ Y > 0 then skip else skip end",
+      "valid": true,
+      "expected_ast": {
+        "type": "Program",
+        "statement": {
+          "type": "If",
+          "condition": {
+            "type": "LogicalOr",
+            "left": {
+              "type": "Comparison",
+              "operator": ">",
+              "left": {
+                "type": "Variable",
+                "name": "X",
+                "span": {
+                  "line": 1,
+                  "column": 10,
+                  "end_line": 1,
+                  "end_column": 11,
+                  "start_pos": 9,
+                  "end_pos": 10
+                }
+              },
+              "right": {
+                "type": "Number",
+                "value": 0,
+                "span": {
+                  "line": 1,
+                  "column": 14,
+                  "end_line": 1,
+                  "end_column": 15,
+                  "start_pos": 13,
+                  "end_pos": 14
+                }
+              },
+              "span": {
+                "line": 1,
+                "column": 10,
+                "end_line": 1,
+                "end_column": 15,
+                "start_pos": 9,
+                "end_pos": 14
+              }
+            },
+            "right": {
+              "type": "Comparison",
+              "operator": ">",
+              "left": {
+                "type": "Variable",
+                "name": "Y",
+                "span": {
+                  "line": 1,
+                  "column": 18,
+                  "end_line": 1,
+                  "end_column": 19,
+                  "start_pos": 17,
+                  "end_pos": 18
+                }
+              },
+              "right": {
+                "type": "Number",
+                "value": 0,
+                "span": {
+                  "line": 1,
+                  "column": 22,
+                  "end_line": 1,
+                  "end_column": 23,
+                  "start_pos": 21,
+                  "end_pos": 22
+                }
+              },
+              "span": {
+                "line": 1,
+                "column": 18,
+                "end_line": 1,
+                "end_column": 23,
+                "start_pos": 17,
+                "end_pos": 22
+              }
+            },
+            "span": {
+              "line": 1,
+              "column": 10,
+              "end_line": 1,
+              "end_column": 23,
+              "start_pos": 9,
+              "end_pos": 22
+            }
+          },
+          "then_branch": {
+            "type": "Skip",
+            "span": {
+              "line": 1,
+              "column": 29,
+              "end_line": 1,
+              "end_column": 33,
+              "start_pos": 28,
+              "end_pos": 32
+            }
+          },
+          "else_branch": {
+            "type": "Skip",
+            "span": {
+              "line": 1,
+              "column": 39,
+              "end_line": 1,
+              "end_column": 43,
+              "start_pos": 38,
+              "end_pos": 42
+            }
+          },
+          "span": {
+            "line": 1,
+            "column": 7,
+            "end_line": 1,
+            "end_column": 43,
+            "start_pos": 6,
+            "end_pos": 42
+          }
+        },
+        "span": {
+          "line": 1,
+          "column": 1,
+          "end_line": 1,
+          "end_column": 47,
+          "start_pos": 0,
+          "end_pos": 46
+        }
+      }
+    },
+    {
+      "id": "negative-01",
+      "source": "skip",
+      "valid": false,
+      "expected_error": "syntax"
+    },
+    {
+      "id": "negative-02",
+      "source": "begin X = 1 end",
+      "valid": false,
+      "expected_error": "syntax"
+    },
+    {
+      "id": "negative-03",
+      "source": "begin X := end",
+      "valid": false,
+      "expected_error": "syntax"
+    },
+    {
+      "id": "negative-04",
+      "source": "begin X := 1;",
+      "valid": false,
+      "expected_error": "syntax"
+    },
+    {
+      "id": "negative-05",
+      "source": "begin if X > 0 then skip end",
+      "valid": false,
+      "expected_error": "syntax"
+    },
+    {
+      "id": "negative-06",
+      "source": "begin while X > 0 X := 1 end",
+      "valid": false,
+      "expected_error": "syntax"
+    },
+    {
+      "id": "negative-07",
+      "source": "begin X := (1 + 2 end",
+      "valid": false,
+      "expected_error": "syntax"
+    },
+    {
+      "id": "negative-08",
+      "source": "begin X := 1; end",
+      "valid": false,
+      "expected_error": "syntax"
+    },
+    {
+      "id": "negative-09",
+      "source": "begin begin skip end",
+      "valid": false,
+      "expected_error": "syntax"
+    },
+    {
+      "id": "negative-10",
+      "source": "begin X := 1 Y := 2 end",
+      "valid": false,
+      "expected_error": "syntax"
+    },
+    {
+      "id": "negative-11",
+      "source": "begin if X > 0 then skip else end",
+      "valid": false,
+      "expected_error": "syntax"
+    },
+    {
+      "id": "negative-12",
+      "source": "begin X := 01 end",
+      "valid": false,
+      "expected_error": "syntax"
+    },
+    {
+      "id": "positive-13",
+      "source": "begin X := -12 end",
+      "valid": true,
+      "expected_ast": {
+        "type": "Program",
+        "statement": {
+          "type": "Assignment",
+          "name": "X",
+          "expression": {
+            "type": "Number",
+            "value": -12,
+            "span": {
+              "line": 1,
+              "column": 12,
+              "end_line": 1,
+              "end_column": 15,
+              "start_pos": 11,
+              "end_pos": 14
+            }
+          },
+          "span": {
+            "line": 1,
+            "column": 7,
+            "end_line": 1,
+            "end_column": 15,
+            "start_pos": 6,
+            "end_pos": 14
+          }
+        },
+        "span": {
+          "line": 1,
+          "column": 1,
+          "end_line": 1,
+          "end_column": 19,
+          "start_pos": 0,
+          "end_pos": 18
+        }
+      }
+    },
+    {
+      "id": "execution-power",
+      "source": "begin\n    R := 1;\n    while Y > 0 do\n    begin\n        R := R * X;\n        Y := Y - 1\n    end\nend\n",
+      "valid": true,
+      "expected_ast": {
+        "type": "Program",
+        "statement": {
+          "type": "Sequence",
+          "statements": [
+            {
+              "type": "Assignment",
+              "name": "R",
+              "expression": {
+                "type": "Number",
+                "value": 1,
+                "span": {
+                  "line": 2,
+                  "column": 10,
+                  "end_line": 2,
+                  "end_column": 11,
+                  "start_pos": 15,
+                  "end_pos": 16
+                }
+              },
+              "span": {
+                "line": 2,
+                "column": 5,
+                "end_line": 2,
+                "end_column": 11,
+                "start_pos": 10,
+                "end_pos": 16
+              }
+            },
+            {
+              "type": "While",
+              "condition": {
+                "type": "Comparison",
+                "operator": ">",
+                "left": {
+                  "type": "Variable",
+                  "name": "Y",
+                  "span": {
+                    "line": 3,
+                    "column": 11,
+                    "end_line": 3,
+                    "end_column": 12,
+                    "start_pos": 28,
+                    "end_pos": 29
+                  }
+                },
+                "right": {
+                  "type": "Number",
+                  "value": 0,
+                  "span": {
+                    "line": 3,
+                    "column": 15,
+                    "end_line": 3,
+                    "end_column": 16,
+                    "start_pos": 32,
+                    "end_pos": 33
+                  }
+                },
+                "span": {
+                  "line": 3,
+                  "column": 11,
+                  "end_line": 3,
+                  "end_column": 16,
+                  "start_pos": 28,
+                  "end_pos": 33
+                }
+              },
+              "body": {
+                "type": "Block",
+                "statement": {
+                  "type": "Sequence",
+                  "statements": [
+                    {
+                      "type": "Assignment",
+                      "name": "R",
+                      "expression": {
+                        "type": "BinaryArithmetic",
+                        "operator": "*",
+                        "left": {
+                          "type": "Variable",
+                          "name": "R",
+                          "span": {
+                            "line": 5,
+                            "column": 14,
+                            "end_line": 5,
+                            "end_column": 15,
+                            "start_pos": 60,
+                            "end_pos": 61
+                          }
+                        },
+                        "right": {
+                          "type": "Variable",
+                          "name": "X",
+                          "span": {
+                            "line": 5,
+                            "column": 18,
+                            "end_line": 5,
+                            "end_column": 19,
+                            "start_pos": 64,
+                            "end_pos": 65
+                          }
+                        },
+                        "span": {
+                          "line": 5,
+                          "column": 14,
+                          "end_line": 5,
+                          "end_column": 19,
+                          "start_pos": 60,
+                          "end_pos": 65
+                        }
+                      },
+                      "span": {
+                        "line": 5,
+                        "column": 9,
+                        "end_line": 5,
+                        "end_column": 19,
+                        "start_pos": 55,
+                        "end_pos": 65
+                      }
+                    },
+                    {
+                      "type": "Assignment",
+                      "name": "Y",
+                      "expression": {
+                        "type": "BinaryArithmetic",
+                        "operator": "-",
+                        "left": {
+                          "type": "Variable",
+                          "name": "Y",
+                          "span": {
+                            "line": 6,
+                            "column": 14,
+                            "end_line": 6,
+                            "end_column": 15,
+                            "start_pos": 80,
+                            "end_pos": 81
+                          }
+                        },
+                        "right": {
+                          "type": "Number",
+                          "value": 1,
+                          "span": {
+                            "line": 6,
+                            "column": 18,
+                            "end_line": 6,
+                            "end_column": 19,
+                            "start_pos": 84,
+                            "end_pos": 85
+                          }
+                        },
+                        "span": {
+                          "line": 6,
+                          "column": 14,
+                          "end_line": 6,
+                          "end_column": 19,
+                          "start_pos": 80,
+                          "end_pos": 85
+                        }
+                      },
+                      "span": {
+                        "line": 6,
+                        "column": 9,
+                        "end_line": 6,
+                        "end_column": 19,
+                        "start_pos": 75,
+                        "end_pos": 85
+                      }
+                    }
+                  ],
+                  "span": {
+                    "line": 5,
+                    "column": 9,
+                    "end_line": 6,
+                    "end_column": 19,
+                    "start_pos": 55,
+                    "end_pos": 85
+                  }
+                },
+                "span": {
+                  "line": 4,
+                  "column": 5,
+                  "end_line": 7,
+                  "end_column": 8,
+                  "start_pos": 41,
+                  "end_pos": 93
+                }
+              },
+              "span": {
+                "line": 3,
+                "column": 5,
+                "end_line": 7,
+                "end_column": 8,
+                "start_pos": 22,
+                "end_pos": 93
+              }
+            }
+          ],
+          "span": {
+            "line": 2,
+            "column": 5,
+            "end_line": 7,
+            "end_column": 8,
+            "start_pos": 10,
+            "end_pos": 93
+          }
+        },
+        "span": {
+          "line": 1,
+          "column": 1,
+          "end_line": 8,
+          "end_column": 4,
+          "start_pos": 0,
+          "end_pos": 97
+        }
+      },
+      "execution": true,
+      "initial_state": {
+        "X": 5,
+        "Y": 2
+      },
+      "expected_state": {
+        "X": 5,
+        "Y": 0,
+        "R": 25
+      }
+    }
+  ]
+}
