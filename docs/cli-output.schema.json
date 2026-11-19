@@ -1,0 +1,316 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SIPL CLI output",
+  "oneOf": [
+    {
+      "title": "Check result",
+      "type": "object",
+      "required": [
+        "valid",
+        "message"
+      ],
+      "properties": {
+        "valid": {
+          "const": true
+        },
+        "message": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    {
+      "title": "Run result",
+      "type": "object",
+      "propertyNames": {
+        "pattern": "^[A-Za-z_][A-Za-z0-9_]*$"
+      },
+      "additionalProperties": {
+        "type": "integer"
+      }
+    },
+    {
+      "title": "Trace result",
+      "type": "object",
+      "required": [
+        "state",
+        "steps",
+        "trace"
+      ],
+      "properties": {
+        "state": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "integer"
+          }
+        },
+        "steps": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "trace": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "event",
+              "step",
+              "statement",
+              "span",
+              "state",
+              "variable",
+              "old_value",
+              "new_value",
+              "condition"
+            ],
+            "properties": {
+              "event": {
+                "enum": [
+                  "BeforeStatement",
+                  "AfterStatement",
+                  "VariableChanged",
+                  "ConditionChecked",
+                  "ProgramTerminated"
+                ]
+              },
+              "step": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "statement": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "span": {
+                "type": [
+                  "object",
+                  "null"
+                ]
+              },
+              "state": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "integer"
+                }
+              },
+              "variable": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "old_value": {
+                "type": [
+                  "integer",
+                  "null"
+                ]
+              },
+              "new_value": {
+                "type": [
+                  "integer",
+                  "null"
+                ]
+              },
+              "condition": {
+                "type": [
+                  "boolean",
+                  "null"
+                ]
+              }
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    {
+      "title": "Syntax error",
+      "type": "object",
+      "required": [
+        "error",
+        "message",
+        "line",
+        "column",
+        "expected"
+      ],
+      "properties": {
+        "error": {
+          "const": "syntax"
+        },
+        "message": {
+          "type": "string"
+        },
+        "line": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "column": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "expected": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    {
+      "title": "Execution error",
+      "type": "object",
+      "required": [
+        "error",
+        "message"
+      ],
+      "properties": {
+        "error": {
+          "const": "execution"
+        },
+        "message": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    {
+      "title": "Parse Tree and AST comparison",
+      "type": "object",
+      "required": [
+        "parse_tree",
+        "ast"
+      ],
+      "properties": {
+        "parse_tree": {
+          "$ref": "#/$defs/parseTreeNode"
+        },
+        "ast": {
+          "$ref": "#/$defs/astNode"
+        }
+      },
+      "additionalProperties": false
+    },
+    {
+      "title": "Parse tree or AST",
+      "type": "object",
+      "required": [
+        "type"
+      ],
+      "properties": {
+        "type": {
+          "type": "string"
+        },
+        "span": {
+          "type": "object"
+        },
+        "source_fragment": {
+          "type": "string"
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "sourceSpan": {
+      "type": "object",
+      "properties": {
+        "line": {
+          "type": "integer"
+        },
+        "column": {
+          "type": "integer"
+        },
+        "end_line": {
+          "type": "integer"
+        },
+        "end_column": {
+          "type": "integer"
+        },
+        "start_pos": {
+          "type": "integer"
+        },
+        "end_pos": {
+          "type": "integer"
+        }
+      },
+      "additionalProperties": {
+        "type": [
+          "integer",
+          "null"
+        ]
+      }
+    },
+    "parseTreeNode": {
+      "type": "object",
+      "required": [
+        "type",
+        "name",
+        "span"
+      ],
+      "properties": {
+        "type": {
+          "enum": [
+            "Rule",
+            "Token"
+          ]
+        },
+        "name": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string"
+        },
+        "span": {
+          "$ref": "#/$defs/sourceSpan"
+        },
+        "source_fragment": {
+          "type": "string"
+        },
+        "children": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/parseTreeChild"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "parseTreeChild": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/parseTreeNode"
+        },
+        {
+          "type": [
+            "string",
+            "integer",
+            "number",
+            "boolean",
+            "null"
+          ]
+        }
+      ]
+    },
+    "astNode": {
+      "type": "object",
+      "required": [
+        "type"
+      ],
+      "properties": {
+        "type": {
+          "type": "string"
+        },
+        "span": {
+          "$ref": "#/$defs/sourceSpan"
+        },
+        "source_fragment": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": true
+    }
+  }
+}

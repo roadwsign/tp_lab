@@ -1,0 +1,32 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - name: Install project and development dependencies
+        run: python -m pip install -e ".[dev]"
+      - name: Ruff
+        run: ruff check .
+      - name: Mypy
+        run: mypy src
+      - name: Tests
+        run: pytest -v
+      - name: Conformance suite
+        run: python tests/run_conformance.py
+      - name: Build package
+        run: python -m build
